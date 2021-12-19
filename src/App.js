@@ -1,8 +1,9 @@
+
 import { useState } from 'react';
 import BasicCard from "./components/BasicCard/BasicCard";
 //import Search from './components/Search/Search';
 
-import './App.css';
+//import './App.css';
 
 
 const api = {
@@ -12,7 +13,7 @@ const api = {
 
 function App() { 
   const[query, setQuery] = useState('');
-  const[apiData, setApiData] = useState({})
+  const[apiData, setApiData] = useState([{}])
 
   const searchCity = (evt) => {
     if (evt.key === "Enter") {
@@ -26,11 +27,11 @@ function App() {
         })
     }
   }
-  console.log(apiData);
-  console.log(apiData.name)
-  console.log(apiData.main.temp)
-  console.log(apiData.weather[0].main)
-  console.log(apiData.sys.country)
+  // console.log(apiData);
+  // console.log(apiData.name)
+  // //console.log(apiData.main.temp)
+  // console.log(apiData.weather[0].main)
+  // console.log(apiData.sys.country)
 
   const info = {
     city: apiData.name,
@@ -38,13 +39,12 @@ function App() {
     tem: apiData.main.temp,
     weather: apiData.weather[0].main
   }
-  console.log(info);
-  console.log(info.weather)
-  
+  // console.log(info);
+  // console.log(info.weather)
 
 
   return (
-    <div className="App">
+    <div className={(info.tem > 25) ? "cold hot" : "cold"}>
         <input 
           type="text"
           placeholder="Search..."
@@ -52,15 +52,14 @@ function App() {
           value={query}
           onKeyPress={searchCity}
         />
-        
 
-
-      <BasicCard 
-        city={info.city} 
-        country={info.country} 
-        temp={info.tem}
-        weather={info.weather}
-        />
+              <BasicCard 
+                city={info.city} 
+                country={info.country} 
+                temp={info.tem}
+                weather={info.weather}
+              />
+      
     </div>
   );
 }
