@@ -7,7 +7,7 @@ import BasicCard from "./components/BasicCard/BasicCard";
 
 
 const api = {
-  key: "1c7f356b11a054d7d207f1168e62eac0",
+  key: "your-key",
   base: "https://api.openweathermap.org/data/2.5/"
 }
 
@@ -18,7 +18,7 @@ function App() {
   const searchCity = (evt) => {
     if (evt.key === "Enter") {
       fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-      //fetch("https://api.openweathermap.org/data/2.5/weather?q=malaga&appid=1c7f356b11a054d7d207f1168e62eac0")
+      
         .then((response) => response.json())
         .then((data) =>  {
           setApiData(data);
